@@ -1,0 +1,23 @@
+services:
+  zhiwen:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zhiwen-demo:latest
+    container_name: zhiwen-demo
+    restart: unless-stopped
+    ports:
+      - "${ZHIWEN_PORT:-8787}:8787"
+    environment:
+      NODE_ENV: production
+      PORT: 8787
+      HOST: 0.0.0.0
+      ZHIWEN_DATA_FILE: /app/server/data/db.json
+    volumes:
+      - ./server/data:/app/server/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/api/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
