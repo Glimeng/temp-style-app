@@ -7,7 +7,7 @@ services:
     container_name: zhiwen-demo
     restart: unless-stopped
     ports:
-      - "${ZHIWEN_PORT:-8787}:8787"
+      - "127.0.0.1:${ZHIWEN_PORT:-8787}:8787"
     environment:
       NODE_ENV: production
       PORT: 8787
