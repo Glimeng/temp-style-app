@@ -164,7 +164,37 @@
 .style-group .style-choice-grid { margin-top:0 }
 .style-choice-grid button { padding:9px 13px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--muted); font-size:11px }
 .style-choice-grid button.selected { border-color:#a5c1ad; background:#e8f3eb; color:var(--sage); font-weight:600 }
+.custom-style-group { padding-top:18px; border-top:1px solid var(--line) }
+.custom-style-input { display:flex; gap:9px }
+.custom-style-input input { min-width:0; flex:1; padding:10px 11px; border:1px solid var(--line); border-radius:7px; outline:0; color:var(--ink); font:inherit; font-size:12px }
+.custom-style-input input:focus { border-color:#9bbbab }
+.custom-style-input button { padding:0 14px; border:0; border-radius:7px; background:var(--sage); color:#fff; font-size:11px; font-weight:600 }
+.custom-style-list { margin-top:10px !important }
+.style-choice-grid button.custom-style-chip { display:inline-flex; align-items:center; gap:5px }
 .clothing-dress .visual-shape { width:76px; height:120px; border-radius:18px 18px 8px 8px; clip-path:polygon(18% 0, 82% 0, 100% 100%, 0 100%) }
 .clothing-skirt .visual-shape { width:104px; height:76px; border-radius:7px 7px 28px 28px; clip-path:polygon(12% 0, 88% 0, 100% 100%, 0 100%) }
 .clothing-bag .visual-shape { width:82px; height:66px; border-radius:10px }
+.clothing-menu { position:absolute; top:44px; right:10px; z-index:2; display:grid; min-width:108px; padding:5px; border:1px solid var(--line); border-radius:8px; background:#fff; box-shadow:var(--shadow) }
+.clothing-menu button { padding:8px 9px; border:0; border-radius:5px; background:transparent; color:var(--ink); text-align:left; font-size:11px }
+.clothing-menu button:hover { background:#f2f6f2 }
+.clothing-menu .delete-action { color:#b4544d }
+.edit-item-preview { display:grid; place-items:center }
+.edit-item-preview .clothing-visual { width:100%; height:100% }
+.account-sheet { width:min(460px, 100%); position:relative; padding:28px 28px 24px; border-radius:18px 18px 0 0; background:#fff; box-shadow:0 -10px 40px rgba(25,42,34,.16) }
+.account-head { display:flex; align-items:center; gap:12px; padding-bottom:21px; border-bottom:1px solid var(--line) }
+.account-avatar { width:46px; height:46px; display:grid; place-items:center; border-radius:50%; background:#e8c8ba; color:#5b4238; font-size:17px; font-weight:700 }
+.account-head h2 { margin:0; font-size:20px }
+.account-head p:last-child { margin:4px 0 0; color:var(--muted); font-size:10px }
+.account-actions { display:grid; gap:5px; margin-top:16px }
+.account-actions>button { display:flex; align-items:center; gap:11px; width:100%; padding:12px 4px; border:0; border-radius:8px; background:transparent; color:var(--ink); text-align:left }
+.account-actions>button:hover { background:#f3f7f4 }
+.account-action-icon { width:34px; height:34px; display:grid; place-items:center; border-radius:8px; color:var(--sage); background:#e8f1eb }
+.account-actions>button>span:nth-child(2) { flex:1 }
+.account-actions strong,.account-actions small { display:block }
+.account-actions strong { font-size:12px }
+.account-actions small { margin-top:4px; color:var(--muted); font-size:10px }
+.account-actions .logout-action { color:#a65049 }
+.account-actions .logout-action .account-action-icon { color:#a65049; background:#faece9 }
+.guide-callout { padding-right:52px }
+.guide-callout>button:not(.guide-login) { position:absolute; top:11px; right:11px }
 @media (max-width:700px) { .filter-sheet { padding:24px 20px 20px } }
