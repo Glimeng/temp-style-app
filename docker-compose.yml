@@ -13,6 +13,7 @@ services:
       PORT: 8787
       HOST: 0.0.0.0
       ZHIWEN_DATA_FILE: /app/server/data/db.json
+      ZHIWEN_DEMO_RESET_KEY: ${ZHIWEN_DEMO_RESET_KEY:-}
     volumes:
       - ./server/data:/app/server/data
     healthcheck:

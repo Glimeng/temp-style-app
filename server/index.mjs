@@ -1,12 +1,13 @@
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { extname, join, normalize, resolve, sep } from 'node:path'
-import { loadStore, saveStore } from './store.mjs'
+import { cloneSeed, loadStore, saveStore } from './store.mjs'
 
 const port = Number(process.env.PORT || 8787)
 const host = process.env.HOST || '0.0.0.0'
 const distRoot = resolve('dist')
 const demoToken = 'demo-token'
+const demoResetKey = process.env.ZHIWEN_DEMO_RESET_KEY
 
 const weather = {
   北京: { name: '北京', initial: 'B', temp: '16', weather: '晴间多云', summary: '12° - 21° · 早晚微凉', slots: ['12°', '21°', '15°'] },
@@ -56,6 +57,13 @@ async function handleApi(request, response, parts) {
   if (parts[1] === 'auth' && parts[2] === 'demo' && method === 'POST') {
     const store = await loadStore()
     return sendJson(response, 200, { token: demoToken, user: store.users[0] })
+  }
+  if (parts[1] === 'demo' && parts[2] === 'reset' && method === 'POST') {
+    if (!demoResetKey || request.headers['x-demo-reset-key'] !== demoResetKey) {
+      return sendJson(response, 403, { error: 'FORBIDDEN', message: '演示数据重置密钥无效' })
+    }
+    await saveStore(cloneSeed())
+    return sendJson(response, 200, { ok: true, message: '演示数据已恢复到标准状态' })
   }
   const userId = requireUser(request, response)
   if (!userId) return

@@ -40,6 +40,7 @@ The project includes a zero-dependency Node API under `server/`. It stores local
 - `GET /api/wardrobe`, `POST /api/wardrobe`, `PATCH/DELETE /api/wardrobe/:id`
 - `GET /api/outfits`, `POST /api/outfits/:id/wear`
 - `POST /api/feedback`
+- `POST /api/demo/reset` (requires the server-only `X-Demo-Reset-Key` header)
 
 Run the API in one terminal with `npm run server`, then run the Vite app with `npm run dev`. Vite proxies `/api` to port `8787` during development. For a single production process, run `npm start`; the Node server will serve both `dist/` and the API. The included `Dockerfile` can be deployed to any container-compatible hosting service.
 
@@ -61,6 +62,8 @@ cp server/data/db.json "server/data/db.$(date +%Y%m%d-%H%M%S).json"
 docker compose up -d --build
 docker compose logs --tail=100 zhiwen
 ```
+
+For a shared interview demo, set `ZHIWEN_DEMO_RESET_KEY` in the server `.env`. The protected reset endpoint restores the standard wardrobe, outfit, and feedback data; see [`docs/interview-demo.md`](docs/interview-demo.md) for the reset command and presentation path.
 
 For public access, keep port `8787` private and put Nginx or another HTTPS reverse proxy in front of it on ports `80` and `443`.
 

@@ -27,8 +27,11 @@ const seedData = {
       { id: 6, title: '轻便日常', note: '轻量叠穿，适合城市步行', level: '基本适配', colors: ['#f0ebe1', '#d6d9d4', '#334b62', '#e9e3d7'], items: [2, 1, 8, 5], slots: [{ label: '早晨', value: '刚好 · 针织层应对微凉' }, { label: '办公室', value: '舒适 · 久坐无需增减' }, { label: '晚间', value: '合适 · 风大时加防风层' }], styles: ['简约', '日常'] },
     ],
   },
-  feedback: [],
-  worn: {},
+  feedback: [
+    { id: 1, userId: 1, outfitId: 3, feeling: '刚好', createdAt: '2026-08-25T11:30:00.000Z' },
+    { id: 2, userId: 1, outfitId: 2, feeling: '偏冷', createdAt: '2026-08-22T12:10:00.000Z' },
+  ],
+  worn: { 1: { outfitId: 3, date: '2026-08-25T08:20:00.000Z' } },
 }
 
 let cache
