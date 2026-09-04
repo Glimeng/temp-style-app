@@ -1,90 +1,48 @@
 # 知温
 
-面向温度感知不敏感人群的体感穿搭决策 Web。
+> 让衣橱，更懂你的体感。
+
+知温是一款面向温度感知不敏感人群的体感穿搭决策 Web。它将当天的天气、个人衣橱与体感反馈串联起来，帮助你在出门前更安心地做出穿搭选择。
 
 ## 在线体验
 
-[http://111.231.165.55](http://111.231.165.55)
+**[打开知温 Web](http://111.231.165.55)**
+
+## 为什么需要知温
+
+同样的气温，对每个人的体感并不相同。早晚温差、办公室空调和临时降温，都会让“今天穿什么”成为一道不确定的选择题。
+
+知温不会只告诉你气温，而是结合你的衣橱与偏好，给出一套可解释、可调整的穿搭建议。
+
+## 核心体验
+
+### 看懂今天的体感
+
+展示本地天气、早中晚温度与体感提示，帮助你判断一天中需要如何增减衣物。
+
+### 建立个人衣橱
+
+上传衣物后，可确认类别、颜色、材质、保暖层和风格等信息；只有确认可穿的衣物才会进入推荐范围。
+
+### 获得可解释的穿搭推荐
+
+基于天气、体感安全规则、衣橱状态和风格偏好生成搭配，并说明早晨、办公室与晚间的穿着建议；不合适时可以直接替换单品。
+
+### 让推荐持续贴近你
+
+确认当天穿搭并记录“偏冷、刚好、偏热”后，知温会保留你的体感反馈，为后续推荐迭代提供依据。
+
+## 当前版本
+
+- 支持演示登录、账户切换与匿名浏览
+- 支持衣橱新增、编辑、删除、可穿状态管理与标签筛选
+- 支持今日推荐、风格探索、单品替换、穿搭确认与体感反馈
+- 支持在手机和桌面端访问
+
+## 产品边界
+
+知温提供日常穿衣与天气辅助建议，不提供医疗诊断或治疗建议。当前为演示版本，天气与衣物识别结果用于展示完整体验流程。
 
 ---
 
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-
-## Backend demo
-
-The project includes a zero-dependency Node API under `server/`. It stores local demo data in `server/data/db.json` and exposes:
-
-- `GET /api/health`
-- `POST /api/auth/demo`
-- `GET /api/wardrobe`, `POST /api/wardrobe`, `PATCH/DELETE /api/wardrobe/:id`
-- `GET /api/outfits`, `POST /api/outfits/:id/wear`
-- `POST /api/feedback`
-- `POST /api/demo/reset` (requires the server-only `X-Demo-Reset-Key` header)
-
-Run the API in one terminal with `npm run server`, then run the Vite app with `npm run dev`. Vite proxies `/api` to port `8787` during development. For a single production process, run `npm start`; the Node server will serve both `dist/` and the API. The included `Dockerfile` can be deployed to any container-compatible hosting service.
-
-### Docker deployment
-
-On a server with Docker Compose installed:
-
-```bash
-cp .env.example .env
-docker compose up -d --build
-docker compose ps
-curl http://127.0.0.1:8787/api/health
-```
-
-The `server/data` directory is mounted into the container, so the demo JSON database survives image rebuilds. Back it up before updates:
-
-```bash
-cp server/data/db.json "server/data/db.$(date +%Y%m%d-%H%M%S).json"
-docker compose up -d --build
-docker compose logs --tail=100 zhiwen
-```
-
-For a shared interview demo, set `ZHIWEN_DEMO_RESET_KEY` in the server `.env`. The protected reset endpoint restores the standard wardrobe, outfit, and feedback data; see [`docs/interview-demo.md`](docs/interview-demo.md) for the reset command and presentation path.
-
-For public access, keep port `8787` private and put Nginx or another HTTPS reverse proxy in front of it on ports `80` and `443`.
-
-The `deploy/nginx.conf.example` file is a starting point for the Nginx site configuration. Replace its `server_name`, enable the site, then use Certbot to add HTTPS after DNS points to the server.
-
-### API smoke test
-
-With the API running locally or in a server shell, run:
-
-```bash
-npm run test:api
-```
-
-The test checks health, authentication, seeded wardrobe/outfit data, and wardrobe create/update/delete behavior.
+在线体验：[http://111.231.165.55](http://111.231.165.55)
