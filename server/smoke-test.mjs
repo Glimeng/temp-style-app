@@ -13,6 +13,9 @@ function assert(condition, message) {
 const health = await request('/api/health')
 assert(health.response.ok && health.body.ok, 'health check failed')
 
+const weather = await request('/api/weather?city=%E5%8C%97%E4%BA%AC')
+assert(weather.response.ok && weather.body.temp && weather.body.apparentTemp && Array.isArray(weather.body.slots), 'weather response is missing required fields')
+
 const unauthorized = await request('/api/wardrobe')
 assert(unauthorized.response.status === 401, 'unauthorized wardrobe request should return 401')
 

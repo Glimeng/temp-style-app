@@ -22,6 +22,20 @@ export type OutfitDto = {
   styles: string[]
 }
 
+export type WeatherDto = {
+  name: string
+  initial: string
+  temp: string
+  apparentTemp: string
+  weather: string
+  summary: string
+  slots: [string, string, string]
+  humidity: number
+  wind: string
+  isLive: boolean
+  updatedAt?: string
+}
+
 type ApiOptions = { method?: string; body?: unknown; token?: string | null }
 
 async function apiRequest<T>(path: string, options: ApiOptions = {}): Promise<T> {
@@ -37,6 +51,15 @@ async function apiRequest<T>(path: string, options: ApiOptions = {}): Promise<T>
 
 export function demoLogin() {
   return apiRequest<{ token: string; user: { id: number; nickname: string; city: string; styles: string[] } }>('/auth/demo', { method: 'POST' })
+}
+
+export function getWeather(city: string, coordinates?: { latitude: number; longitude: number }) {
+  const query = new URLSearchParams({ city })
+  if (coordinates) {
+    query.set('latitude', String(coordinates.latitude))
+    query.set('longitude', String(coordinates.longitude))
+  }
+  return apiRequest<WeatherDto>(`/weather?${query.toString()}`)
 }
 
 export function getWardrobe(token: string) {
